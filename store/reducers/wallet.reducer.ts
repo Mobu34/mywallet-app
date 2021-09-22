@@ -1,44 +1,57 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface IWallet {
-  total: number;
-  transactions: [
-    {
-      id: string;
-      date: Date;
-      name: string;
-      amount: number;
-      type: "+" | "-";
-    }
-  ];
+interface ITransaction {
+  id: string;
+  date: Date;
+  label: string;
+  amount: number;
+  type: "credit" | "debit";
 }
 
-const initialState: { total: number } = {
-  total: 0,
-  // transactions: [
-  //   {
-  //     id: "qfqsfqf",
-  //     date: new Date(),
-  //     name: "Paiement Luc pour août 2021",
-  //     amount: 650,
-  //     type: "+",
-  //   },
-  // ],
+interface IWallet {
+  total: number;
+  transactions: [ITransaction];
+}
+
+const initialState: IWallet = {
+  total: 650,
+  transactions: [
+    {
+      id: "qfqsfqf",
+      date: new Date(),
+      label: "Paiement Luc pour août 2021",
+      amount: 650,
+      type: "credit",
+    },
+    {
+      id: "dssfs",
+      date: new Date(),
+      label: "Bella Napoli resto",
+      amount: 34,
+      type: "debit",
+    },
+    {
+      id: "sdfvsds",
+      date: new Date(),
+      label: "Sauramps manga Slam Dunk",
+      amount: 100,
+      type: "debit",
+    },
+  ],
 };
 
 const walletSlice = createSlice({
   name: "wallet",
   initialState,
   reducers: {
-    credit: (state, action: PayloadAction<{ total: number }>) => {
-      // state.total += action.payload.amount;
-      // state.transactions.push(action.payload.newTransaction);
-      state.total = action.payload.total;
+    credit: (state, action: PayloadAction<ITransaction>) => {
+      state.total += action.payload.amount;
+      state.transactions.push(action.payload);
     },
-    // debit: (state, action: PayloadAction<[]>) => {
-    //   state.total -= action.payload.amount;
-    //   state.transactions.push(action.payload.newTransaction);
-    // },
+    debit: (state, action: PayloadAction<ITransaction>) => {
+      state.total -= action.payload.amount;
+      state.transactions.push(action.payload);
+    },
   },
 });
 
