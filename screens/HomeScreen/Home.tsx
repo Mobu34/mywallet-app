@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { Text } from "react-native";
+import { View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
+import { Stack } from "react-native-spacing-system";
 
-import { StyledView, StyledViewTransaction } from "./Home.styled";
+import { StyledView, StyledTitle, StyledViewTransaction } from "./Home.styled";
+import { StyledHorizontalView } from "../../styles/commun.styled";
 import { RootState, AppDispatch } from "../../store/store";
 import { walletSlice } from "../../store/reducers/wallet.reducer";
 
@@ -38,20 +40,31 @@ const Home = (): JSX.Element => {
 
   return (
     <StyledView>
-      <Button
-        title="TRANSACTION +"
-        onPress={() => {
-          setIsModalOpen(true);
-          setTransactionType("credit");
-        }}
-      />
-      <Button
-        title="TRANSACTION -"
-        onPress={() => {
-          setIsModalOpen(true);
-          setTransactionType("debit");
-        }}
-      />
+      <StyledHorizontalView>
+        <StyledTitle>My Black Wallet</StyledTitle>
+      </StyledHorizontalView>
+
+      <Stack size={30} />
+
+      <StyledHorizontalView>
+        <Button
+          title="CRÉDITER"
+          onPress={() => {
+            setIsModalOpen(true);
+            setTransactionType("credit");
+          }}
+        />
+        <View style={{ width: 50 }}></View>
+        <Button
+          title="DÉBITER"
+          onPress={() => {
+            setIsModalOpen(true);
+            setTransactionType("debit");
+          }}
+        />
+      </StyledHorizontalView>
+
+      <Stack size={30} />
 
       <StyledViewTransaction>
         {transactions.map((t) => (
@@ -64,7 +77,13 @@ const Home = (): JSX.Element => {
           />
         ))}
       </StyledViewTransaction>
-      <Text>{total.toFixed(2)} €</Text>
+
+      <Stack size={30} />
+
+      <StyledHorizontalView>
+        <StyledTitle>Balance : {total.toFixed(2)} €</StyledTitle>
+      </StyledHorizontalView>
+
       <Modal
         visible={isModalOpen}
         setVisible={setIsModalOpen}

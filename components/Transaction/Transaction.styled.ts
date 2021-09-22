@@ -1,11 +1,11 @@
 import styled, { css } from "styled-components";
 
 export const StyledView = styled.View`
-  width: 400px;
   flex-direction: row;
   justify-content: space-between;
   padding: 20px;
-  margin: 5px;
+  border-bottom-width: 1px;
+  border-color: grey;
   ${(props) =>
     css`
       background-color: ${props.color};
@@ -13,3 +13,12 @@ export const StyledView = styled.View`
 `;
 
 export const StyledText = styled.Text``;
+
+export const StyledTextAmount = styled.Text`
+  font-size: 16px;
+  font-weight: 600;
+`;
+
+export const StyledTextLabel = styled.Text`
+  color: grey;
+`;

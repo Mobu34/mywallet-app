@@ -1,9 +1,14 @@
 import styled from "styled-components/native";
 
-export const StyledView = styled.View`
+export const StyledView = styled.SafeAreaView`
   flex: 1;
-  justify-content: center;
-  align-items: center;
+  padding: 20px;
+  justify-content: space-around;
 `;
 
-export const StyledViewTransaction = styled.View``;
+export const StyledTitle = styled.Text`
+  font-size: 30px;
+  font-weight: 600;
+`;
+
+export const StyledViewTransaction = styled.ScrollView``;

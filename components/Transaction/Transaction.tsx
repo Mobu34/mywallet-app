@@ -1,7 +1,12 @@
 import React from "react";
 import { View, Text } from "react-native";
 
-import { StyledView, StyledText } from "./Transaction.styled";
+import {
+  StyledView,
+  StyledText,
+  StyledTextAmount,
+  StyledTextLabel,
+} from "./Transaction.styled";
 import moment from "moment";
 
 const Transaction = ({
@@ -16,12 +21,17 @@ const Transaction = ({
   type: "credit" | "debit";
 }) => {
   const formatDate = moment(date).format("LL");
+  const sign = type === "credit" ? "+" : "-";
 
   return (
-    <StyledView color={type === "credit" ? "#c2f0c2" : "#ffd6cc"}>
-      <StyledText>{formatDate}</StyledText>
-      <StyledText>{label}</StyledText>
-      <StyledText>{amount}€</StyledText>
+    <StyledView color={type === "credit" ? "#ebfaeb" : "#ffebe6"}>
+      <View>
+        <StyledText>{formatDate}</StyledText>
+        <StyledTextLabel>{label}</StyledTextLabel>
+      </View>
+      <StyledTextAmount>
+        {sign} {amount.toFixed(2)}€
+      </StyledTextAmount>
     </StyledView>
   );
 };
