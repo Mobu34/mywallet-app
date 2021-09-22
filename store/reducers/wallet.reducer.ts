@@ -18,21 +18,21 @@ const initialState: IWallet = {
   transactions: [
     {
       id: "qfqsfqf",
-      date: new Date(),
+      date: "2021-09-21T10:40:50.078Z",
       label: "Paiement Luc pour août 2021",
       amount: 650,
       type: "credit",
     },
     {
       id: "dssfs",
-      date: new Date(),
+      date: "2021-09-21T18:30:50.078Z",
       label: "Bella Napoli resto",
       amount: 34,
       type: "debit",
     },
     {
       id: "sdfvsds",
-      date: new Date(),
+      date: "2021-09-23T10:46:50.078Z",
       label: "Sauramps manga Slam Dunk",
       amount: 100,
       type: "debit",
