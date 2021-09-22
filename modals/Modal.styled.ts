@@ -2,8 +2,22 @@ import styled from "styled-components";
 
 export const StyledModal = styled.Modal``;
 
-export const StyledViewModal = styled.View`
+export const StyledTouchableOpacityModal = styled.TouchableOpacity`
   flex: 1;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
 `;
 
-export const StyledView = styled.View``;
+export const StyledTouchableOpacity = styled.TouchableOpacity`
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 30px;
+  margin-horizontal: 20px;
+`;
+
+export const StyledText = styled.Text`
+  font-size: 20px;
+  font-weight: 600;
+`;
+
+export const StyledViewInput = styled.View``;

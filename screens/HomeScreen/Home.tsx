@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { Stack } from "react-native-spacing-system";
+import Constants from "expo-constants";
 
 import { StyledView, StyledTitle, StyledViewTransaction } from "./Home.styled";
 import { StyledHorizontalView } from "../../styles/commun.styled";
@@ -11,14 +12,14 @@ import { walletSlice } from "../../store/reducers/wallet.reducer";
 import { Button, Transaction } from "../../components";
 import { Modal } from "../../modals";
 
+const { statusBarHeight } = Constants;
+
 const Home = (): JSX.Element => {
   const { total, transactions } = useSelector(
     (state: RootState) => state.walletSlice
   );
 
   const dispatch: AppDispatch = useDispatch();
-
-  console.log({ total: typeof total });
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [transactionType, setTransactionType] = useState("");
@@ -40,6 +41,8 @@ const Home = (): JSX.Element => {
 
   return (
     <StyledView>
+      <Stack size={statusBarHeight} />
+
       <StyledHorizontalView>
         <StyledTitle>My Black Wallet</StyledTitle>
       </StyledHorizontalView>
@@ -88,6 +91,7 @@ const Home = (): JSX.Element => {
         visible={isModalOpen}
         setVisible={setIsModalOpen}
         handleValidate={handleNewTransaction}
+        transactionType={transactionType}
       />
     </StyledView>
   );

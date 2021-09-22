@@ -2,7 +2,7 @@ import styled from "styled-components/native";
 
 export const StyledView = styled.SafeAreaView`
   flex: 1;
-  padding: 20px;
+  padding-vertical: 20px;
   justify-content: space-around;
 `;
 
