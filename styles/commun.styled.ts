@@ -4,3 +4,5 @@ export const StyledHorizontalView = styled.View`
   flex-direction: row;
   justify-content: center;
 `;
+
+export const StyledText = styled.Text``;

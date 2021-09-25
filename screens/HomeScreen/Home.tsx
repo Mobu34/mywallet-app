@@ -6,7 +6,7 @@ import Constants from "expo-constants";
 import uuid from "react-native-uuid";
 
 import { StyledView, StyledTitle, StyledViewTransaction } from "./Home.styled";
-import { StyledHorizontalView } from "../../styles/commun.styled";
+import { StyledHorizontalView, StyledText } from "../../styles/commun.styled";
 import { RootState, AppDispatch } from "../../store/store";
 import { walletSlice } from "../../store/reducers/wallet.reducer";
 
@@ -71,17 +71,26 @@ const Home = (): JSX.Element => {
       <Stack size={30} />
 
       <StyledViewTransaction>
-        {transactions
-          .map((t) => (
-            <Transaction
-              key={t.id}
-              date={t.date}
-              label={t.label}
-              amount={t.amount}
-              type={t.type}
-            />
-          ))
-          .sort((a, b) => a.date < b.date)}
+        {transactions.length ? (
+          transactions
+            .map((t) => (
+              <Transaction
+                key={t.id}
+                date={t.date}
+                label={t.label}
+                amount={t.amount}
+                type={t.type}
+              />
+            ))
+            .sort((a, b) => a.date < b.date)
+        ) : (
+          <>
+            <Stack size={100} />
+            <StyledHorizontalView>
+              <StyledText>Aucune transaction</StyledText>
+            </StyledHorizontalView>
+          </>
+        )}
       </StyledViewTransaction>
 
       <Stack size={30} />
