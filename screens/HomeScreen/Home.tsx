@@ -71,15 +71,17 @@ const Home = (): JSX.Element => {
       <Stack size={30} />
 
       <StyledViewTransaction>
-        {transactions.map((t) => (
-          <Transaction
-            key={t.id}
-            date={t.date}
-            label={t.label}
-            amount={t.amount}
-            type={t.type}
-          />
-        ))}
+        {transactions
+          .map((t) => (
+            <Transaction
+              key={t.id}
+              date={t.date}
+              label={t.label}
+              amount={t.amount}
+              type={t.type}
+            />
+          ))
+          .sort((a, b) => a.date < b.date)}
       </StyledViewTransaction>
 
       <Stack size={30} />
