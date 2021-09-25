@@ -3,6 +3,7 @@ import { View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { Stack } from "react-native-spacing-system";
 import Constants from "expo-constants";
+import uuid from "react-native-uuid";
 
 import { StyledView, StyledTitle, StyledViewTransaction } from "./Home.styled";
 import { StyledHorizontalView } from "../../styles/commun.styled";
@@ -26,10 +27,10 @@ const Home = (): JSX.Element => {
 
   const handleNewTransaction = (label, amount) => {
     const newTransaction = {
-      id: "egsfsdfsd",
+      id: uuid.v4(),
       date: new Date(),
       label,
-      amount: Number(amount),
+      amount: +amount,
       type: transactionType,
     };
     if (transactionType === "credit")
