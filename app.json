@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "myWeather-app",
-    "slug": "myWeather-app",
+    "name": "black-wallet",
+    "slug": "black-wallet",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -17,13 +17,17 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.tidas.blackwallet",
+      "buildNumber": "1.0.0"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.tidas.blackwallet",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"
