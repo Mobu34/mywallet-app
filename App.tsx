@@ -10,9 +10,9 @@ import * as S from "./screens";
 const App = () => {
   return (
     <Provider store={store}>
-      {/* <PersistGate loading={null} persistor={persistor}> */}
-      <S.Home />
-      {/* </PersistGate> */}
+      <PersistGate loading={null} persistor={persistor}>
+        <S.Home />
+      </PersistGate>
     </Provider>
   );
 };

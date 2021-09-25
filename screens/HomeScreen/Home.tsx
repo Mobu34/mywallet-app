@@ -20,6 +20,8 @@ const Home = (): JSX.Element => {
     (state: RootState) => state.walletSlice
   );
 
+  console.log({ transactions });
+
   const dispatch: AppDispatch = useDispatch();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -71,7 +73,7 @@ const Home = (): JSX.Element => {
       <Stack size={30} />
 
       <StyledViewTransaction>
-        {transactions.length ? (
+        {transactions?.length ? (
           transactions
             .map((t) => (
               <Transaction
