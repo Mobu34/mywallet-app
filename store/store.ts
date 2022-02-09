@@ -6,7 +6,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import walletSlice from "./reducers/wallet.reducer";
 
 const persistConfig = {
-  key: "root",
+  key: "root2",
   storage: AsyncStorage,
 };
 
