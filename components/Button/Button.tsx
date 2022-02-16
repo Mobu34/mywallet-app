@@ -1,11 +1,14 @@
 import React from "react";
+import { StyledText } from "../../componentsSC/Text/Text.styled";
+import { StyledTouchableOpacity } from "./Button.styled";
+import { TButtonProps } from "./Button.d";
 
-import { StyledTouchableOpacity, StyledText } from "./Button.styled";
-
-const Button = ({ title, onPress }: { title: string; onPress: () => void }) => {
+const Button = ({ title, onPress }: TButtonProps) => {
   return (
     <StyledTouchableOpacity onPress={onPress}>
-      <StyledText>{title}</StyledText>
+      <StyledText color="#FFFFFF" fontSize="small">
+        {title}
+      </StyledText>
     </StyledTouchableOpacity>
   );
 };

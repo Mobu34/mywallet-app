@@ -23,6 +23,7 @@
     "moment": "^2.29.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-hook-form": "^7.27.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
     "react-native-bouncy-checkbox": "^2.1.10",
     "react-native-spacing-system": "^2.0.0-rc.0",

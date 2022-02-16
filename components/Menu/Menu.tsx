@@ -1,34 +1,35 @@
-import { Modal as RNModal, Text, TouchableOpacity, View } from "react-native";
+import { Modal as RNModal, TouchableOpacity } from "react-native";
 import React, { FC, useState } from "react";
 import {
   StyledMenu,
   StyledTouchableOpacity,
   StyledTouchableOpacityModal,
-  StyledView,
 } from "./Menu.styled";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 
 import { Modal } from "../../modals";
 import { StyledText } from "../../styles/commun.styled";
-import {
-  addAccount,
-  deleteAccount,
-  walletSlice,
-} from "../../store/reducers/wallet.reducer";
+import { addAccount, deleteAccount } from "../../store/reducers/wallet.reducer";
 import { Ionicons } from "@expo/vector-icons";
+import { TMenuProps } from "./Menu.d";
 
-const Menu: FC = ({ visible, setVisible, openAccount }) => {
+const Menu: FC<TMenuProps> = ({
+  visible,
+  setVisible,
+  openAccount,
+  onDeleteAccount,
+}) => {
   const { accounts } = useSelector((state: RootState) => state.walletSlice);
 
   const dispatch = useDispatch();
 
-  const [isModalOpen1, setIsModalOpen1] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
-  const [isModalOpen2, setIsModalOpen2] = useState(false);
-  const [accountIndex, setAccountIndex] = useState(null);
+  const [isModalOpen1, setIsModalOpen1] = useState<boolean>(false);
+  const [isChecked, setIsChecked] = useState<boolean>(false);
+  const [isModalOpen2, setIsModalOpen2] = useState<boolean>(false);
+  const [accountIndex, setAccountIndex] = useState<number | null>(null);
 
-  const handleValidate = (label) => {
+  const handleValidate = ({ label }: { label: string }): void => {
     dispatch(
       addAccount({
         label,
@@ -38,12 +39,13 @@ const Menu: FC = ({ visible, setVisible, openAccount }) => {
     setIsModalOpen1(false);
   };
 
-  const handleConfirmation = () => {
+  const handleConfirmation = (): void => {
+    onDeleteAccount(accountIndex);
     dispatch(deleteAccount({ index: accountIndex }));
     setIsModalOpen2(false);
   };
 
-  const handleCheckbox = (e) => {
+  const handleCheckbox = (e: boolean): void => {
     setIsChecked(e);
   };
 
@@ -59,7 +61,6 @@ const Menu: FC = ({ visible, setVisible, openAccount }) => {
               <StyledText>{a.name}</StyledText>
               {index > 0 && (
                 <TouchableOpacity
-                  // style={{ height: 10, width: 10, backgroundColor: "red" }}
                   onPress={() => {
                     setIsModalOpen2(true);
                     setAccountIndex(index);
@@ -89,6 +90,7 @@ const Menu: FC = ({ visible, setVisible, openAccount }) => {
         setVisible={setIsModalOpen2}
         mode="confirmation"
         handleValidate={handleConfirmation}
+        title="Veuillez confirmer la suppression de ce compte"
       />
     </RNModal>
   );

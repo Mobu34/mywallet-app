@@ -15,9 +15,4 @@ export const StyledTouchableOpacity = styled.TouchableOpacity`
   margin-horizontal: 20px;
 `;
 
-export const StyledText = styled.Text`
-  font-size: 20px;
-  font-weight: 600;
-`;
-
 export const StyledViewInput = styled.View``;

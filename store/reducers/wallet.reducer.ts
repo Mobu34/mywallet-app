@@ -1,23 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import uuid from "react-native-uuid";
 
-import { TNewWallet, TTransaction, TWallet } from "./wallet";
+import { TTransaction, TWallet } from "./wallet";
 
-const initialState: TNewWallet = {
+const initialState: TWallet = {
   accounts: [
     {
       id: uuid.v4(),
       name: "Compte principal",
-      total: 100,
-      transactions: [
-        {
-          id: "uzf",
-          date: new Date(),
-          label: "test",
-          amount: 100,
-          type: "credit",
-        },
-      ],
+      total: 0,
+      transactions: [],
       canDelete: false,
     },
   ],
@@ -27,7 +19,10 @@ const walletSlice = createSlice({
   name: "wallet",
   initialState,
   reducers: {
-    credit: (state, action: PayloadAction<TTransaction>) => {
+    credit: (
+      state,
+      action: PayloadAction<{ index: number; transaction: TTransaction }>
+    ) => {
       state.accounts[action.payload.index].total +=
         action.payload.transaction.amount;
       state.accounts[action.payload.index].transactions.push(
@@ -73,10 +68,14 @@ const walletSlice = createSlice({
     deleteAccount: (state, action) => {
       state.accounts.splice(action.payload.index, 1);
     },
+    resetAccount: (state, action) => {
+      state.accounts[action.payload.index].total = 0;
+      state.accounts[action.payload.index].transactions = [];
+    },
   },
 });
 
-export const { credit, debit, addAccount, deleteAccount } = walletSlice.actions;
-export { walletSlice };
+export const { credit, debit, addAccount, deleteAccount, resetAccount } =
+  walletSlice.actions;
 
 export default walletSlice.reducer;

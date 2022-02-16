@@ -1,17 +1,13 @@
-import React from "react";
+import React, { FC } from "react";
 
 import { StyledView, StyledLabel, StyledInput } from "./Input.styled";
+import { TInputProps } from "./Input.d";
 
-const Input = ({ label, value, setValue, placeholder, ...rest }) => {
+const Input: FC<TInputProps> = ({ label, ...rest }) => {
   return (
     <StyledView>
       <StyledLabel>{label}</StyledLabel>
-      <StyledInput
-        onChangeText={(text) => setValue(text)}
-        value={setValue}
-        placeholder={placeholder}
-        {...rest}
-      />
+      <StyledInput {...rest} />
     </StyledView>
   );
 };

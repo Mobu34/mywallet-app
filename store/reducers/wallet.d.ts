@@ -6,11 +6,6 @@ export interface TTransaction {
   type: "credit" | "debit";
 }
 
-export interface TWallet {
-  total: number;
-  transactions: TTransaction[] | [];
-}
-
 export interface TAccount {
   id: string | number[];
   name: string;
@@ -20,6 +15,6 @@ export interface TAccount {
   isLinkedToPrimaryAccount?: boolean;
 }
 
-export interface TNewWallet {
+export interface TWallet {
   accounts: TAccount[];
 }

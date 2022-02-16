@@ -9,6 +9,7 @@ export const StyledView = styled.SafeAreaView`
 export const StyledTitle = styled.Text`
   font-size: 30px;
   font-weight: 600;
+  text-align: center;
 `;
 
 export const StyledViewTransaction = styled.ScrollView``;

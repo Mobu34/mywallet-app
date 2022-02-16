@@ -1,37 +1,27 @@
-import React from "react";
-import { View, Text } from "react-native";
+import React, { FC } from "react";
+import { View } from "react-native";
 
-import {
-  StyledView,
-  StyledText,
-  StyledTextAmount,
-  StyledTextLabel,
-} from "./Transaction.styled";
+import { StyledView } from "./Transaction.styled";
 import moment from "moment";
+import { transformAmount } from "../../utils/functions";
+import { StyledText } from "../../componentsSC/Text/Text.styled";
+import { TTransaction } from "./Transaction.d";
 
-const Transaction = ({
-  date,
-  label,
-  amount,
-  type,
-}: {
-  date: Date;
-  label: string;
-  amount: number;
-  type: "credit" | "debit";
-}) => {
+const Transaction: FC<TTransaction> = ({ date, label, amount, type }) => {
   const formatDate = moment(date).format("LL");
   const sign = type === "credit" ? "+" : "-";
 
   return (
     <StyledView color={type === "credit" ? "#ebfaeb" : "#ffebe6"}>
       <View>
-        <StyledText>{formatDate}</StyledText>
-        <StyledTextLabel>{label}</StyledTextLabel>
+        <StyledText fontSize="x-small">{label}</StyledText>
+        <StyledText fontSize="x-small" color="grey">
+          {formatDate}
+        </StyledText>
       </View>
-      <StyledTextAmount>
-        {sign} {amount.toFixed(2)}€
-      </StyledTextAmount>
+      <StyledText fontSize="small">
+        {sign} {transformAmount(amount)}€
+      </StyledText>
     </StyledView>
   );
 };
